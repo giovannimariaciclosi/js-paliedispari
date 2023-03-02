@@ -47,8 +47,10 @@ userButtonEl.addEventListener('click', function() {
   if(palindrome(userWordEl.value)) {
 
     // in caso non lo sia, lo stampo nell'elemento di output
-    userOutputEl.innerText = palindrome(userWordEl.value);
+    userOutputEl.innerText = "la parola è palindroma";
 
+  } else {
+    userOutputEl.innerText = "la parola non è palindroma";
   }
 });
 
@@ -75,15 +77,24 @@ playButtonEl.addEventListener('click', function() {
 
   // &&
   // se l'utente sceglie pari è true, se sceglie dispari è false
-  if (isEvenOrOdd(somma) && userOddOrEvenEl.value == "even"){
+  if (isEven(somma) && userOddOrEvenEl.value == "even"){
     
     // console.log("hai vinto")
     winnerOutputEl.innerText = `Il numero dell'utente è ${userNumberEl.value}, il numero del computer è ${computerNumber}. La somma: ${somma} è pari, hai scelto ${userOddOrEvenEl.value} quindi HAI VINTO!`;
-  } else if (isEvenOrOdd(somma) && userOddOrEvenEl.value == "odd"){
+  } else if (!isEven(somma) && userOddOrEvenEl.value == "odd"){
     // console.log("hai perso")
     winnerOutputEl.innerText = `Il numero dell'utente è ${userNumberEl.value}, il numero del computer è ${computerNumber}. La somma: ${somma} è dispari, hai scelto ${userOddOrEvenEl.value} quindi HAI VINTO!`;
   } else {
-    winnerOutputEl.innerText = `Il numero dell'utente è ${userNumberEl.value}, il numero del computer è ${computerNumber}. La somma: ${somma} è dispari, hai scelto ${userOddOrEvenEl.value} quindi HAI PERSO!`;
+
+    let pariDispari;
+
+    if (isEven(somma)) {
+      pariDispari = "pari";
+    } else {
+      pariDispari = "dispari";
+    }
+    
+    winnerOutputEl.innerText = `Il numero dell'utente è ${userNumberEl.value}, il numero del computer è ${computerNumber}. La somma: ${somma} è ${pariDispari}, hai scelto ${userOddOrEvenEl.value} quindi HAI PERSO!`;
   }
 
 });
@@ -111,14 +122,15 @@ playButtonEl.addEventListener('click', function() {
 function palindrome(word) {
   let lenWord = word.length;
 
-  for (let i = lenWord; i < lenWord; i++) {
-
-    if (word == lenWord[i]) {
+  let reverse;
+  for (let i = lenWord - 1; i >= 0; i--) {
+    reverse = reverse + word[i];
+    if (word == reverse) {
       return true;
-      console.log("palindroma");
     }
-    return false;
-    console.log("non palindroma");
+    else {
+      return false;
+    }
   }
 }
 
@@ -133,7 +145,7 @@ function randomNumberBetween(min, max) {
 }
 
 // NUMERO PARI O DISPARI
-function isEvenOrOdd(number) {
+function isEven(number) {
 
   if(number % 2 == 0) {
     return true;
