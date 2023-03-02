@@ -32,3 +32,89 @@ PSEUDOCODICE
     ALTRIMENTI
     ° l'utente perde
 */
+
+
+
+// PALINDROMA
+const userWordEl = document.getElementById("user-word");
+const userButtonEl = document.getElementById("user-button");
+const userOutputEl = document.getElementById("user-output");
+
+
+userButtonEl.addEventListener('click', function() {
+
+  // controllo se la parola inserita sia palindroma e lo stampo nell'elemento di output
+  if(palindrome(userWordEl.value)) {
+
+    // in caso non lo sia, lo stampo nell'elemento di output
+    userOutputEl.innerText = palindrome(userWordEl.value);
+
+  }
+});
+
+//__________________________________________________________________
+
+//PARI E DISPARI
+const userNumberEl = document.getElementById("1-to-5-number-select");
+const userOddOrEvenEl = document.getElementById("odd-or-even-select");
+const playButtonEl = document.getElementById("play-button");
+const winnerOutputEl = document.getElementById("winner-output");
+
+
+playButtonEl.addEventListener('click', function() {
+  // console.log(userNumberEl.value, userOddOrEvenEl.value);
+
+  // genero un numero random per il computer
+  let computerNumber = randomNumberBetween(1, 5);
+  // console.log(computerNumber);
+
+  // sommo il numero random del computer col numero scelto dall'utente
+  let somma = computerNumber + Number(userNumberEl.value);
+  // console.log(somma);
+
+  if (isEvenOrOdd(somma) && userOddOrEvenEl.value == "even" ){
+    console.log(somma)
+  } else {
+    console.log(somma)
+  }
+
+});
+
+// FUNZIONI
+
+// PAROLA PALINDROMA
+function palindrome(str) {
+  
+  let re = /[^A-Za-z0-9]/g;
+  str = str.toLowerCase().replace(re, '');
+  let len = str.length;
+
+  for (let i = 0; i < len / 2; i++) {
+    if (str[i] !== str[len - 1 - i]) {
+     return "La parola NON è palindroma :(";
+    } else {
+      
+      return "La parola è palindroma :)";
+    }
+  }
+};
+
+// NUMERO CASUALE DAL MINIMO INDICATO (MIN) AL MASSIMO (MAX)
+function randomNumberBetween(min, max) {
+
+  // Genero un numero randome
+  let random = Math.floor(Math.random() * (max - min + 1) + min)
+  return random;
+}
+
+// NUMERO PARI O DISPARI
+function isEvenOrOdd(number) {
+
+  if(number % 2 == 0) {
+    return "è pari";
+  } else {
+    return 'è dispari';
+  }
+}
+
+
