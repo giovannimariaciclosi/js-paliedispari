@@ -72,32 +72,55 @@ playButtonEl.addEventListener('click', function() {
   let somma = computerNumber + Number(userNumberEl.value);
   // console.log(somma);
 
+
+  // &&
+  // se l'utente sceglie pari è true, se sceglie dispari è false
   if (isEvenOrOdd(somma) && userOddOrEvenEl.value == "even" ){
-    console.log(somma)
+    
+    // console.log("hai vinto")
+    winnerOutputEl.innerText = `Il numero dell'utente è ${userNumberEl.value}, il numero del computer è ${computerNumber}. La somma: ${somma} è pari, hai scelto ${userOddOrEvenEl.value} quindi HAI VINTO!`;
   } else {
-    console.log(somma)
+    // console.log("hai perso")
+    winnerOutputEl.innerText = `Il numero dell'utente è ${userNumberEl.value}, il numero del computer è ${computerNumber}. La somma: ${somma} è dispari, hai scelto ${userOddOrEvenEl.value} quindi HAI PERSO!`;
   }
 
 });
 
 // FUNZIONI
 
-// PAROLA PALINDROMA
-function palindrome(str) {
+// PAROLA PALINDROMA - FUNZIONE DI INTERNET
+// function palindrome(str) {
   
-  let re = /[^A-Za-z0-9]/g;
-  str = str.toLowerCase().replace(re, '');
-  let len = str.length;
+//   let re = /[^A-Za-z0-9]/g;
+//   str = str.toLowerCase().replace(re, '');
+//   let len = str.length;
 
-  for (let i = 0; i < len / 2; i++) {
-    if (str[i] !== str[len - 1 - i]) {
-     return "La parola NON è palindroma :(";
-    } else {
+//   for (let i = 0; i < len / 2; i++) {
+//     if (str[i] !== str[len - 1 - i]) {
+//      return "La parola NON è palindroma :(";
+//     } else {
       
-      return "La parola è palindroma :)";
+//       return "La parola è palindroma :)";
+//     }
+//   }
+// };
+
+// PAROLA PALINDROMA - MIA FUNZIONE
+function palindrome(word) {
+  let lenWord = word.length;
+
+  for (let i = lenWord; i < lenWord; i++) {
+
+    if (lenWord == lenWord[i]) {
+      return true;
+      console.log("palindroma");
     }
+    return false;
+    console.log("non palindroma");
   }
-};
+}
+
+console.log(palindrome("anna"));
 
 // NUMERO CASUALE DAL MINIMO INDICATO (MIN) AL MASSIMO (MAX)
 function randomNumberBetween(min, max) {
@@ -111,9 +134,9 @@ function randomNumberBetween(min, max) {
 function isEvenOrOdd(number) {
 
   if(number % 2 == 0) {
-    return "è pari";
+    return true;
   } else {
-    return 'è dispari';
+    return false;
   }
 }
 
