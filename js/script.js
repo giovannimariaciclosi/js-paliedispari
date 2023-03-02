@@ -75,12 +75,14 @@ playButtonEl.addEventListener('click', function() {
 
   // &&
   // se l'utente sceglie pari è true, se sceglie dispari è false
-  if (isEvenOrOdd(somma) && userOddOrEvenEl.value == "even" ){
+  if (isEvenOrOdd(somma) && userOddOrEvenEl.value == "even"){
     
     // console.log("hai vinto")
     winnerOutputEl.innerText = `Il numero dell'utente è ${userNumberEl.value}, il numero del computer è ${computerNumber}. La somma: ${somma} è pari, hai scelto ${userOddOrEvenEl.value} quindi HAI VINTO!`;
-  } else {
+  } else if (isEvenOrOdd(somma) && userOddOrEvenEl.value == "odd"){
     // console.log("hai perso")
+    winnerOutputEl.innerText = `Il numero dell'utente è ${userNumberEl.value}, il numero del computer è ${computerNumber}. La somma: ${somma} è dispari, hai scelto ${userOddOrEvenEl.value} quindi HAI VINTO!`;
+  } else {
     winnerOutputEl.innerText = `Il numero dell'utente è ${userNumberEl.value}, il numero del computer è ${computerNumber}. La somma: ${somma} è dispari, hai scelto ${userOddOrEvenEl.value} quindi HAI PERSO!`;
   }
 
@@ -111,7 +113,7 @@ function palindrome(word) {
 
   for (let i = lenWord; i < lenWord; i++) {
 
-    if (lenWord == lenWord[i]) {
+    if (word == lenWord[i]) {
       return true;
       console.log("palindroma");
     }
