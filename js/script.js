@@ -32,3 +32,47 @@ PSEUDOCODICE
     ALTRIMENTI
     ° l'utente perde
 */
+
+
+
+
+const userWordEl = document.getElementById("user-word");
+const userButtonEl = document.getElementById("user-button");
+const userOutputEl = document.getElementById("user-output");
+
+
+userButtonEl.addEventListener('click', function() {
+
+  // controllo se la parola inserita sia palindroma e lo stampo nell'elemento di output
+  if(palindrome(userWordEl.value)) {
+
+    // in caso non lo sia, lo stampo nell'elemento di output
+    userOutputEl.innerText = palindrome(userWordEl.value);
+
+  }
+});
+
+
+
+
+
+
+
+// FUNZIONI
+
+function palindrome(str) {
+  
+  let re = /[^A-Za-z0-9]/g;
+  str = str.toLowerCase().replace(re, '');
+  let len = str.length;
+
+  for (let i = 0; i < len / 2; i++) {
+    if (str[i] !== str[len - 1 - i]) {
+     return "La parola NON è palindroma :(";
+    } else {
+      
+      return "La parola è palindroma :)";
+    }
+  }
+};
+
